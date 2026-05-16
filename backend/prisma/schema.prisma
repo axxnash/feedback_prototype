@@ -1,0 +1,121 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  VENDOR
+  NGO
+  ADMIN
+  INDIVIDUAL
+}
+
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum ListingStatus {
+  AVAILABLE
+  CLAIMED
+  PICKED_UP
+  COMPLETED
+  CANCELLED
+}
+
+enum ListingType {
+  DONATION
+  DISCOUNTED
+}
+
+enum FoodCategory {
+  FRUIT
+  VEGETABLE
+  DRINK
+  BAKERY
+  MEAL
+  SNACK
+  DAIRY
+  OTHER
+}
+
+enum TransactionStatus {
+  CLAIMED
+  PICKED_UP
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  NOT_REQUIRED
+  PAID_MOCK
+}
+
+model User {
+  id               Int              @id @default(autoincrement())
+  name             String
+  email            String           @unique
+  password         String
+  role             Role
+  approvalStatus   ApprovalStatus   @default(PENDING)
+  organizationName String?
+  phoneNumber      String?
+  documentUrl      String?
+  documentPublicId String?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  listings         FoodListing[]    @relation("VendorListings")
+  claimedListings  FoodListing[]    @relation("ClaimedListings")
+  vendorTransactions    Transaction[] @relation("VendorTransactions")
+  recipientTransactions Transaction[] @relation("RecipientTransactions")
+}
+
+model FoodListing {
+  id             Int           @id @default(autoincrement())
+  foodName       String
+  description    String
+  quantity       String
+  foodType       String
+  category       FoodCategory
+  listingType    ListingType   @default(DONATION)
+  price          Float?
+  originalPrice  Float?
+  discountPercentage Float?
+  pickupCode     String
+  expiryDateTime DateTime
+  pickupLocation String
+  latitude       Float
+  longitude      Float
+  imageUrl       String?
+  imagePublicId  String?
+  status         ListingStatus @default(AVAILABLE)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  createdById    Int
+  claimedById    Int?
+  createdBy      User          @relation("VendorListings", fields: [createdById], references: [id])
+  claimedBy      User?         @relation("ClaimedListings", fields: [claimedById], references: [id])
+  transaction    Transaction?
+}
+
+model Transaction {
+  id          Int               @id @default(autoincrement())
+  listingId   Int               @unique
+  vendorId    Int
+  recipientId Int
+  status      TransactionStatus @default(CLAIMED)
+  paymentStatus PaymentStatus   @default(NOT_REQUIRED)
+  amountPaid  Float?
+  isPickupCodeVerified Boolean   @default(false)
+  pickupCodeVerifiedAt DateTime?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  listing     FoodListing       @relation(fields: [listingId], references: [id])
+  vendor      User              @relation("VendorTransactions", fields: [vendorId], references: [id])
+  recipient   User              @relation("RecipientTransactions", fields: [recipientId], references: [id])
+}

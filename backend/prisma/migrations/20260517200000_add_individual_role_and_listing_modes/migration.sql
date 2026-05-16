@@ -1,0 +1,21 @@
+ALTER TYPE "Role" ADD VALUE IF NOT EXISTS 'INDIVIDUAL';
+
+CREATE TYPE "ListingType" AS ENUM ('DONATION', 'DISCOUNTED');
+CREATE TYPE "FoodCategory" AS ENUM ('FRUIT', 'VEGETABLE', 'DRINK', 'BAKERY', 'MEAL', 'SNACK', 'DAIRY', 'OTHER');
+CREATE TYPE "PaymentStatus" AS ENUM ('NOT_REQUIRED', 'PAID_MOCK');
+
+ALTER TABLE "FoodListing"
+ADD COLUMN "category" "FoodCategory",
+ADD COLUMN "listingType" "ListingType" NOT NULL DEFAULT 'DONATION',
+ADD COLUMN "price" DOUBLE PRECISION;
+
+UPDATE "FoodListing"
+SET "category" = 'OTHER'
+WHERE "category" IS NULL;
+
+ALTER TABLE "FoodListing"
+ALTER COLUMN "category" SET NOT NULL;
+
+ALTER TABLE "Transaction"
+ADD COLUMN "paymentStatus" "PaymentStatus" NOT NULL DEFAULT 'NOT_REQUIRED',
+ADD COLUMN "amountPaid" DOUBLE PRECISION;

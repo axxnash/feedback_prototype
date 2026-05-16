@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #2D2A26;
+  background: #F4F0EA;
+  font-family: "DM Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  @apply bg-sand-50 text-ink-900;
+  font-family: "DM Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.container-shell {
+  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.card {
+  @apply rounded-3xl border border-sand-200 bg-white p-6 shadow-soft;
+}
+
+.input {
+  @apply w-full rounded-xl border border-sand-200 bg-white px-4 py-3 text-sm text-ink-900 outline-none transition focus:border-leaf-500 focus:ring-2 focus:ring-leaf-100;
+  height: 52px;
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+
+.select {
+  @apply input;
+}
+
+textarea.input {
+  height: auto;
+  min-height: 96px;
+  resize: vertical;
+}
+
+.btn-primary {
+  @apply rounded-xl bg-citrus-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-citrus-600 disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+.btn-secondary {
+  @apply rounded-xl bg-leaf-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-leaf-600 disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+.btn-outline {
+  @apply rounded-xl border border-sand-200 bg-white px-4 py-3 text-sm font-semibold text-ink-900 transition hover:bg-sand-100;
+}
+
+.btn-danger {
+  @apply rounded-xl border border-red-200 bg-white px-4 py-3 text-sm font-semibold text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+.app-page {
+  @apply min-h-screen bg-sand-50 py-10;
+}
+
+.page-header {
+  @apply mb-8 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between;
+}
+
+.page-title {
+  color: #2D2A26;
+  font-family: "Lora", Georgia, serif;
+  font-size: clamp(2rem, 2.4vw, 2.7rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.page-subtitle {
+  @apply max-w-3xl text-sm leading-6 text-ink-700;
+}
+
+.page-kicker {
+  @apply inline-flex w-fit rounded-full bg-leaf-100 px-4 py-2 text-xs font-bold uppercase text-leaf-600;
+  letter-spacing: 0.12em;
+}
+
+.panel-soft {
+  @apply rounded-3xl border border-sand-200 bg-sand-100 p-5;
+}
+
+.feedback-success {
+  @apply rounded-2xl border border-leaf-100 bg-leaf-50 px-4 py-3 text-sm text-leaf-700;
+}
+
+.feedback-error {
+  @apply rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700;
+}
+
+.feedback-warning {
+  @apply rounded-2xl border border-amber-200 bg-orange-50 px-4 py-3 text-sm text-amber-800;
+}
+
+.table-shell {
+  @apply overflow-x-auto rounded-3xl border border-sand-200 bg-white p-6 shadow-soft;
+}
+
+.table-shell table {
+  @apply min-w-full text-left text-sm;
+}
+
+.table-shell thead {
+  @apply text-ink-700;
+}
+
+.table-shell tbody tr {
+  @apply border-t border-sand-200;
+}
+
+.table-shell th {
+  @apply pb-3 font-semibold;
+}
+
+.table-shell td {
+  @apply py-3 align-top;
+}
