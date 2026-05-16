@@ -1,0 +1,161 @@
+FeedBack Setup Guide
+====================
+
+Project structure
+-----------------
+- backend  : Express + Prisma + PostgreSQL
+- frontend : React + Vite + Tailwind
+
+
+1. Prerequisites
+----------------
+Install these first:
+- Node.js 18+ (Node 20+ recommended)
+- npm
+- PostgreSQL database access
+
+
+2. Backend Setup
+----------------
+Open a terminal in:
+- backend
+
+Install dependencies:
+- npm install
+
+Backend environment:
+1. Copy:
+   - backend/.env.example
+2. Create:
+   - backend/.env
+3. Fill in the required values:
+   - PORT
+   - DATABASE_URL
+   - DIRECT_URL
+   - JWT_SECRET
+   - CLIENT_URL
+   - CLOUDINARY_CLOUD_NAME
+   - CLOUDINARY_API_KEY
+   - CLOUDINARY_API_SECRET
+
+Important notes:
+- DATABASE_URL is used by the app runtime.
+- DIRECT_URL is used by Prisma config for migrations.
+- CLIENT_URL should match your frontend URL, usually:
+  - http://localhost:5173
+
+Generate Prisma client:
+- npx prisma generate
+
+Apply database migrations:
+- npx prisma migrate deploy
+
+Optional: seed admin user
+- npm run prisma:seed
+
+Start backend:
+- npm run dev
+
+Expected backend URL:
+- http://localhost:5000
+- API health check:
+  - http://localhost:5000/api/health
+
+
+3. Frontend Setup
+-----------------
+Open another terminal in:
+- frontend
+
+Install dependencies:
+- npm install
+
+Frontend environment:
+1. Copy:
+   - frontend/.env.example
+2. Create:
+   - frontend/.env
+3. Set:
+   - VITE_API_URL=http://localhost:5000/api
+
+Start frontend:
+- npm run dev
+
+Expected frontend URL:
+- http://localhost:5173
+
+
+4. Local Run Order
+------------------
+Recommended order:
+1. Start backend
+2. Start frontend
+3. Open:
+   - http://localhost:5173
+
+
+5. Default Admin Seed
+---------------------
+If you run the seed script, the default admin is:
+- email: admin@feedback.local
+- password: Admin123!
+
+
+6. Common Troubleshooting
+-------------------------
+Problem: frontend cannot talk to backend
+- Check frontend/.env
+- Make sure VITE_API_URL points to:
+  - http://localhost:5000/api
+- Make sure backend is running
+
+Problem: Prisma/database errors
+- Re-run:
+  - npx prisma generate
+  - npx prisma migrate deploy
+- Confirm DATABASE_URL and DIRECT_URL are valid
+
+Problem: login or API fails after schema changes
+- Restart backend after Prisma changes
+
+Problem: page loads but some data errors appear
+- Check that migrations were applied to the same database your backend is using
+
+Problem: uploaded image/document features fail
+- Check Cloudinary keys in backend/.env
+
+
+7. Useful Commands
+------------------
+Backend:
+- npm run dev
+- npm start
+- npm run prisma:generate
+- npm run prisma:seed
+
+Frontend:
+- npm run dev
+- npm run build
+
+Prisma:
+- npx prisma generate
+- npx prisma migrate deploy
+
+
+8. Current Feature Notes
+------------------------
+- Vendors can create:
+  - donation listings for NGOs
+  - discounted listings for individuals
+- NGOs can claim donation listings
+- Individuals can checkout discounted food
+- Payment flow is prototype-only, but user-facing text presents it like a normal checkout flow
+
+
+9. Files to Check if Setup Fails
+--------------------------------
+- backend/.env
+- backend/prisma/schema.prisma
+- backend/prisma/migrations/
+- frontend/.env
+- frontend/src/api/axios.js
