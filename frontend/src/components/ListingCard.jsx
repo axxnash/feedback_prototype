@@ -26,25 +26,14 @@ function ListingCard({ listing, actionLabel, onAction, disabled }) {
       </div>
 
       <div className="space-y-2 text-sm text-ink-700">
-<<<<<<< HEAD
-        <p>{listing.description}</p>
-=======
->>>>>>> 9a07e37 (Initial local commit)
         <p><span className="font-semibold">Category:</span> {listing.category}</p>
         <p><span className="font-semibold">Mode:</span> {listing.listingType === "DISCOUNTED" ? "Discounted" : "Donation"}</p>
         {listing.listingType === "DISCOUNTED" && (
           <p>
             <span className="font-semibold">Price:</span> RM {Number(listing.originalPrice || listing.price || 0).toFixed(2)}
-<<<<<<< HEAD
-            {"  "}
-            <span className="font-semibold">Discount:</span> {Number(listing.discountPercentage || 0).toFixed(0)}%
-            {"  "}
-            <span className="font-semibold">Now:</span> RM {Number(listing.price || 0).toFixed(2)}
-=======
             <div>
             <span className="font-semibold">Discounted Price:</span> RM {Number(listing.price || 0).toFixed(2)}
             </div>
->>>>>>> 9a07e37 (Initial local commit)
           </p>
         )}
         <p><span className="font-semibold">Quantity:</span> {listing.quantity}</p>
