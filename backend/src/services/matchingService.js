@@ -4,15 +4,10 @@ function toRadians(value) {
 
 function haversineDistance(lat1, lon1, lat2, lon2) {
   const earthRadiusKm = 6371;
-<<<<<<< HEAD
-  const latDiff = toRadians(lat2 - lat1);
-  const lonDiff = toRadians(lon2 - lon1);
-=======
 
   const latDiff = toRadians(lat2 - lat1);
   const lonDiff = toRadians(lon2 - lon1);
 
->>>>>>> 9a07e37 (Initial local commit)
   const a =
     Math.sin(latDiff / 2) * Math.sin(latDiff / 2) +
     Math.cos(toRadians(lat1)) *
@@ -21,27 +16,6 @@ function haversineDistance(lat1, lon1, lat2, lon2) {
       Math.sin(lonDiff / 2);
 
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-<<<<<<< HEAD
-  return earthRadiusKm * c;
-}
-
-function scoreListing(listing, preference) {
-  let score = 0;
-
-  if (preference && listing.foodType.toLowerCase() === preference.toLowerCase()) {
-    score += 30;
-  }
-
-  const expiryMs = new Date(listing.expiryDateTime).getTime() - Date.now();
-  const hoursUntilExpiry = Math.max(expiryMs / (1000 * 60 * 60), 0);
-  score += Math.max(24 - hoursUntilExpiry, 0);
-  score += Math.max(20 - (listing.distanceKm || 0), 0);
-
-  return score;
-}
-
-function recommendListing(listings, preference) {
-=======
 
   return earthRadiusKm * c;
 }
@@ -114,16 +88,11 @@ function scoreListing(listing, preference = {}) {
 }
 
 function recommendListing(listings, preference = {}) {
->>>>>>> 9a07e37 (Initial local commit)
   if (!listings.length) {
     return null;
   }
 
   return [...listings]
-<<<<<<< HEAD
-    .map((listing) => ({ ...listing, recommendationScore: scoreListing(listing, preference) }))
-    .sort((a, b) => b.recommendationScore - a.recommendationScore)[0];
-=======
     .map((listing) => {
       const result = scoreListing(
         listing,
@@ -142,14 +111,9 @@ function recommendListing(listings, preference = {}) {
         b.recommendationScore -
         a.recommendationScore
     )[0];
->>>>>>> 9a07e37 (Initial local commit)
 }
 
 module.exports = {
   haversineDistance,
   recommendListing
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> 9a07e37 (Initial local commit)
