@@ -252,6 +252,7 @@ function Login({ onLogin }) {
 
           {/* Logo row */}
           <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:8 }}>
+<<<<<<< HEAD
             <div style={{ display:"flex", gap:6, alignItems:"flex-end" }}>
               <SpoonPin/><ForkPin/>
             </div>
@@ -262,17 +263,32 @@ function Login({ onLogin }) {
             <p style={{ fontSize:12, color:C.charcoalMid, textAlign:"center", margin:0, lineHeight:1.5 }}>
               Connecting surplus food with<br/>communities in need
             </p>
+=======
+          <img src="/src/feedback-logo.png" alt="FeedBack Logo" style={{
+            width: "auto",
+            height: "100px",
+            objectFit: "contain"
+          }}/>
+>>>>>>> 9a07e37 (Initial local commit)
           </div>
 
           {/* Headline */}
           <div>
             <h2 style={{ fontFamily:serif, fontSize:26, fontWeight:700, color:C.charcoal,
               lineHeight:1.35, margin:"0 0 2px" }}>
+<<<<<<< HEAD
               Together, we can<br/>reduce waste and
             </h2>
             <h2 style={{ fontFamily:serif, fontSize:26, fontWeight:700, color:C.green,
               margin:0, lineHeight:1.35 }}>
               spread hope.
+=======
+              <center>Together, we can<br/>reduce waste and</center>
+            </h2>
+            <h2 style={{ fontFamily:serif, fontSize:26, fontWeight:700, color:C.green,
+              margin:0, lineHeight:1.35 }}>
+              <center>spread hope.</center>
+>>>>>>> 9a07e37 (Initial local commit)
             </h2>
           </div>
 
@@ -319,7 +335,11 @@ function Login({ onLogin }) {
               fontFamily:serif, fontSize:28, fontWeight:700, color:C.charcoal,
               margin:"0 0 5px", display:"flex", alignItems:"center", gap:8,
             }}>
+<<<<<<< HEAD
               Welcome back <span style={{ fontSize:22 }}>🌿</span>
+=======
+              Welcome back <span style={{ fontSize:22 }}></span>
+>>>>>>> 9a07e37 (Initial local commit)
             </h1>
             <p style={{ fontSize:13, color:C.charcoalLt, margin:0 }}>
               Sign in to access your dashboard
@@ -328,7 +348,11 @@ function Login({ onLogin }) {
 
           <form onSubmit={handleSubmit}>
             <Field label="Email"    name="email"    type="email"    placeholder="you@example.com" value={form.email}    onChange={handleChange} icon="✉"/>
+<<<<<<< HEAD
             <Field label="Password" name="password" type="password" placeholder="••••••••"       value={form.password} onChange={handleChange} icon="🔒"/>
+=======
+            <Field label="Password" name="password" type="password" placeholder="••••••••"       value={form.password} onChange={handleChange} icon="🔒︎"/>
+>>>>>>> 9a07e37 (Initial local commit)
 
             {error && (
               <div style={{
@@ -364,6 +388,7 @@ function Login({ onLogin }) {
             <span style={{ color:C.orange, fontWeight:600, cursor:"pointer" }}>Contact Admin</span>
           </p>
 
+<<<<<<< HEAD
           {/* Security badge */}
           <div style={{
             marginTop:"1.5rem", display:"flex", alignItems:"center", justifyContent:"center",
@@ -374,6 +399,8 @@ function Login({ onLogin }) {
             <span style={{ fontSize:15, color:C.green }}>🛡</span>
             <span style={{ fontSize:12, color:C.charcoalLt }}>Your data is safe with us</span>
           </div>
+=======
+>>>>>>> 9a07e37 (Initial local commit)
         </div>
 
       </div>
