@@ -9,6 +9,10 @@ import {
 import ListingCard from "../components/ListingCard";
 import { FOOD_CATEGORIES } from "../constants/catalog";
 import { clearStoredNgoClaim, setStoredNgoClaim } from "../utils/ngoClaim";
+<<<<<<< HEAD
+=======
+import RecommendationChart from "../components/Chart";
+>>>>>>> 9a07e37 (Initial local commit)
 
 function NgoDashboard({ auth }) {
   const navigate = useNavigate();
@@ -36,7 +40,14 @@ function NgoDashboard({ auth }) {
       const recommendationData = await getAiRecommendation({
         latitude,
         longitude,
+<<<<<<< HEAD
         foodPreference: foodType,
+=======
+        preference: {
+          foodPreference: foodType,
+          preferredCategories: category ? [category] : []
+        },
+>>>>>>> 9a07e37 (Initial local commit)
         availableListings: nearbyData.listings
       });
       setRecommendation(recommendationData.recommendation);
@@ -103,7 +114,10 @@ function NgoDashboard({ auth }) {
           <>
             <form className="card mb-8 grid gap-4 lg:grid-cols-6" onSubmit={handleSearch}>
             <input className="input lg:col-span-2" placeholder="Search food name" value={search} onChange={(e) => setSearch(e.target.value)} />
+<<<<<<< HEAD
             <input className="input" placeholder="Food type" value={foodType} onChange={(e) => setFoodType(e.target.value)} />
+=======
+>>>>>>> 9a07e37 (Initial local commit)
             <select className="select" value={category} onChange={(e) => setCategory(e.target.value)}>
               <option value="">All categories</option>
               {FOOD_CATEGORIES.map((item) => (
@@ -128,9 +142,23 @@ function NgoDashboard({ auth }) {
               </h2>
               {recommendation ? (
                 <div className="panel-soft mt-4 text-sm text-ink-700">
+<<<<<<< HEAD
                   Recommended listing: <span className="font-semibold">{recommendation.foodName}</span> in{" "}
                   <span className="font-semibold">{recommendation.pickupLocation}</span>
                   {recommendation.distanceKm !== undefined && ` (${recommendation.distanceKm.toFixed(2)} km away)`}
+=======
+                  Recommended listing: <span className="font-semibold">{recommendation.foodName}</span>
+                  <p className="mt-2">AI Confidence: <span className="font-semibold">{recommendation.confidence}%</span></p>
+                 <p className="mt-2"> Why this was recommended:{" "}
+                   {Array.isArray(recommendation.recommendationReasons) ? recommendation.recommendationReasons.join(", ")
+                     : Array.isArray(recommendation.recommendationReason)
+                     ? recommendation.recommendationReason.join(", ")
+                     : recommendation.recommendationReasons || "No specific reasons"}
+                 </p>
+                 <div className="mt-6" border-t pt-6>
+                    <RecommendationChart listings={nearby} topRecommendation={recommendation}/>
+                 </div>
+>>>>>>> 9a07e37 (Initial local commit)
                 </div>
               ) : (
                 <p className="mt-4 text-sm text-ink-700">No recommendation available yet.</p>
